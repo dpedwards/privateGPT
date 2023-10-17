@@ -3,7 +3,7 @@
 
 ### 
 
-[![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)]()
+[![LICENSE](https://img.shields.io/badge/license-Apache-lightgrey.svg)]()
 [![Python 3](https://img.shields.io/badge/python-yellow.svg)](https://www.python.org/downloads/)
 [![python-dotenv](https://img.shields.io/badge/python-dotenv-lightblue.svg)](https://pypi.org/project/python-dotenv/)
 
@@ -120,9 +120,6 @@ In general, given the error, I would recommend going with the second option and 
 ## Download the llm
 [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin)
 
-## Setup output folder/path
-
-
 ## Setup env
 
 Rename the 'env' file to '.env' and store all credentials to the following fields:
@@ -139,8 +136,16 @@ EMBEDDINGS_MODEL_NAME: SentenceTransformers embeddings model name (see https://w
 
 TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer a question
 
-## Source
-
-
+## Run the application
+1. Store files/ducuments into source_documents
+2. Create chunks from own data files/documents
+  ```
+  python3 ingest.py
+   ```
+4. Chat with llm
+  ```
+  python3.main.py
+  ```
 
 ## Contact
+core8@gmx.net
