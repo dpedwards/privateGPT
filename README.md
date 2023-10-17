@@ -5,7 +5,9 @@
 
 [![LICENSE](https://img.shields.io/badge/license-Apache-lightgrey.svg)]()
 [![Python 3](https://img.shields.io/badge/python-yellow.svg)](https://www.python.org/downloads/)
-[![python-dotenv](https://img.shields.io/badge/python-dotenv-lightblue.svg)](https://pypi.org/project/python-dotenv/)
+[![LangChain](https://img.shields.io/badge/langchain-lightgreen.svg)](https://python.langchain.com/docs/get_started/introduction)
+[![GPT4ALL](https://img.shields.io/badge/gpt4all-white.svg)](https://github.com/nomic-ai/gpt4all)
+[![llama.cpp](https://img.shields.io/badge/llamacpp-brown.svg)](https://github.com/abetlen/llama-cpp-python)
 
 ## Requirements
 
@@ -144,7 +146,7 @@ TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer
    ```
 3. Chat with llm
   ```
-  python3.main.py
+  python3 main.py
   ```
 
 ## Contact
