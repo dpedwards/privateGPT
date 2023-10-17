@@ -1,152 +1,146 @@
-# privateGPT
-Ask questions to your documents without an internet connection, using the power of LLMs. 100% private, no data leaves your execution environment at any point. You can ingest documents and ask questions without an internet connection!
+# PRIVATE-GPT
+### Version 0.0.1
 
-> :ear: **Need help applying PrivateGPT to your specific use case?** [Let us know more about it](https://forms.gle/4cSDmH13RZBHV9at7) and we'll try to help! We are refining PrivateGPT through your feedback.
+### 
 
-<img width="902" alt="demo" src="https://user-images.githubusercontent.com/721666/236942256-985801c9-25b9-48ef-80be-3acbb4575164.png">
+[![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)]()
+[![Python 3](https://img.shields.io/badge/python-yellow.svg)](https://www.python.org/downloads/)
+[![python-dotenv](https://img.shields.io/badge/python-dotenv-lightblue.svg)](https://pypi.org/project/python-dotenv/)
 
-Built with [LangChain](https://github.com/hwchase17/langchain), [LlamaIndex](https://www.llamaindex.ai/), [GPT4All](https://github.com/nomic-ai/gpt4all), [LlamaCpp](https://github.com/ggerganov/llama.cpp), [Chroma](https://www.trychroma.com/) and [SentenceTransformers](https://www.sbert.net/).
+## Requirements
 
-# Environment Setup
-In order to set your environment up to run the code here, first install all requirements:
+* minimum python==3.10.+
 
-```shell
-pip3 install -r requirements.txt
+## Virtual Environment
+
+### 1. Install venv (if not already installed):
+```
+pip install virtualenv
+```
+### 2. Create a virtual environment:
+```
+python -m venv myenv
+```
+### 3. Activate the virtual environment:
+Once the virtual environment is created, you need to activate it:
+- Windows:
+```
+source myenv/bin/activate
+```
+- macOS and Linux:
+```
+myenv\Scripts\activate
 ```
 
-*Alternative requirements installation with poetry*
-1. Install [poetry](https://python-poetry.org/docs/#installation)
-
-2. Run this commands
-```shell
-cd privateGPT
-poetry install
-poetry shell
+### 4. Deactivate the virtual environment:
+When you're done working in the virtual environment and want to return to the global Python environment, simply run:
+```
+deactivate
 ```
 
-Then, download the LLM model and place it in a directory of your choice:
-- LLM: default to [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin). If you prefer a different GPT4All-J compatible model, just download it and reference it in your `.env` file.
+## Auto installation
 
-Copy the `example.env` template into `.env`
-```shell
-cp example.env .env
+For this purpose you use following commands:
+
+```
+pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
-and edit the variables appropriately in the `.env` file.
+## Manual installation
+
 ```
+pip install --upgrade pip
+
+pip install langchain
+pip install gpt4all
+pip install chromadb
+pip install llama-cpp-python
+pip install urllib3
+pip install PyMuPDF
+pip install python-dotenv
+pip install unstructured
+pip install extract-msg
+pip install tabulate
+pip install pandoc
+pip install pypandoc
+pip install tqdm
+pip install sentence_transformers
+```
+
+### ISSUES DURING INSTALLATION (WINDOWS)
+```
+Collecting dotenv
+  Using cached dotenv-0.0.5.tar.gz (2.4 kB)
+  Preparing metadata (setup.py) ... error
+  error: subprocess-exited-with-error
+  
+  × python setup.py egg_info did not run successfully.
+  │ exit code: 1
+  ╰─> [70 lines of output]
+      /Users/<user>/Desktop/private-gpt/myenv/lib/python3.11/site-packages/setuptools/installer.py:27: SetuptoolsDeprecationWarning: setuptools.installer is deprecated. Requirements should be satisfied by a PEP 517 installer.
+```
+
+The error message suggests that there's a problem with building the `dotenv` package using `setup.py`. The specific line mentioning `setuptools.installer is deprecated` indicates that the package might not be up-to-date with the current best practices and standards related to packaging.
+
+Here are some steps you can take to resolve this:
+
+1. **Update `pip` and `setuptools`**:
+   Ensuring you have the latest versions can sometimes resolve compatibility issues.
+   ```bash
+   pip install --upgrade pip setuptools
+  ```
+
+2. **Use a Different Package**:
+   If you're trying to use `dotenv` for loading environment variables, the more popular package is `python-dotenv`. Perhaps you meant to install this one:
+   ```bash
+   pip install python-dotenv
+   ```
+
+3. **Install Without PEP 517**:
+   As a workaround, you can try to install the package without PEP 517:
+   ```bash
+   pip install dotenv --no-use-pep517
+   ```
+
+4. **Manual Installation**:
+   As a last resort, you can manually download the package from the PyPI repository, unpack it, and install using `setup.py` directly:
+   ```bash
+   wget https://files.pythonhosted.org/packages/source/d/dotenv/dotenv-0.0.5.tar.gz
+   tar xzf dotenv-0.0.5.tar.gz
+   cd dotenv-0.0.5
+   python setup.py install
+   ```
+
+5. **Python Version Compatibility**:
+   Notice that you're using Python 3.11 (as per the path). Some packages may not yet be compatible with the latest versions of Python. If possible, consider creating a virtual environment with an older version of Python (e.g., 3.9 or 3.10) and trying the installation there.
+
+In general, given the error, I would recommend going with the second option and trying to install `python-dotenv` unless you have a specific reason to use the `dotenv` package.
+
+## Download the llm
+[ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin)
+
+## Setup output folder/path
+
+
+## Setup env
+
+Rename the 'env' file to '.env' and store all credentials to the following fields:
+
 MODEL_TYPE: supports LlamaCpp or GPT4All
 PERSIST_DIRECTORY: is the folder you want your vectorstore in
 MODEL_PATH: Path to your GPT4All or LlamaCpp supported LLM
+
 MODEL_N_CTX: Maximum token limit for the LLM model
+
 MODEL_N_BATCH: Number of tokens in the prompt that are fed into the model at a time. Optimal value differs a lot depending on the model (8 works well for GPT4All, and 1024 is better for LlamaCpp)
+
 EMBEDDINGS_MODEL_NAME: SentenceTransformers embeddings model name (see https://www.sbert.net/docs/pretrained_models.html)
+
 TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer a question
-```
 
-Note: because of the way `langchain` loads the `SentenceTransformers` embeddings, the first time you run the script it will require internet connection to download the embeddings model itself.
-
-## Test dataset
-This repo uses a [state of the union transcript](https://github.com/imartinez/privateGPT/blob/main/source_documents/state_of_the_union.txt) as an example.
-
-## Instructions for ingesting your own dataset
-
-Put any and all your files into the `source_documents` directory
-
-The supported extensions are:
-
-   - `.csv`: CSV,
-   - `.docx`: Word Document,
-   - `.doc`: Word Document,
-   - `.enex`: EverNote,
-   - `.eml`: Email,
-   - `.epub`: EPub,
-   - `.html`: HTML File,
-   - `.md`: Markdown,
-   - `.msg`: Outlook Message,
-   - `.odt`: Open Document Text,
-   - `.pdf`: Portable Document Format (PDF),
-   - `.pptx` : PowerPoint Document,
-   - `.ppt` : PowerPoint Document,
-   - `.txt`: Text file (UTF-8),
-
-Run the following command to ingest all the data.
-
-```shell
-python ingest.py
-```
-
-Output should look like this:
-
-```shell
-Creating new vectorstore
-Loading documents from source_documents
-Loading new documents: 100%|██████████████████████| 1/1 [00:01<00:00,  1.73s/it]
-Loaded 1 new documents from source_documents
-Split into 90 chunks of text (max. 500 tokens each)
-Creating embeddings. May take some minutes...
-Using embedded DuckDB with persistence: data will be stored in: db
-Ingestion complete! You can now run privateGPT.py to query your documents
-```
-
-It will create a `db` folder containing the local vectorstore. Will take 20-30 seconds per document, depending on the size of the document.
-You can ingest as many documents as you want, and all will be accumulated in the local embeddings database.
-If you want to start from an empty database, delete the `db` folder.
-
-Note: during the ingest process no data leaves your local environment. You could ingest without an internet connection, except for the first time you run the ingest script, when the embeddings model is downloaded.
-
-## Ask questions to your documents, locally!
-In order to ask a question, run a command like:
-
-```shell
-python privateGPT.py
-```
-
-And wait for the script to require your input.
-
-```plaintext
-> Enter a query:
-```
-
-Hit enter. You'll need to wait 20-30 seconds (depending on your machine) while the LLM model consumes the prompt and prepares the answer. Once done, it will print the answer and the 4 sources it used as context from your documents; you can then ask another question without re-running the script, just wait for the prompt again.
-
-Note: you could turn off your internet connection, and the script inference would still work. No data gets out of your local environment.
-
-Type `exit` to finish the script.
+## Source
 
 
-### CLI
-The script also supports optional command-line arguments to modify its behavior. You can see a full list of these arguments by running the command ```python privateGPT.py --help``` in your terminal.
 
-
-# How does it work?
-Selecting the right local models and the power of `LangChain` you can run the entire pipeline locally, without any data leaving your environment, and with reasonable performance.
-
-- `ingest.py` uses `LangChain` tools to parse the document and create embeddings locally using `HuggingFaceEmbeddings` (`SentenceTransformers`). It then stores the result in a local vector database using `Chroma` vector store.
-- `privateGPT.py` uses a local LLM based on `GPT4All-J` or `LlamaCpp` to understand questions and create answers. The context for the answers is extracted from the local vector store using a similarity search to locate the right piece of context from the docs.
-- `GPT4All-J` wrapper was introduced in LangChain 0.0.162.
-
-# System Requirements
-
-## Python Version
-To use this software, you must have Python 3.10 or later installed. Earlier versions of Python will not compile.
-
-## C++ Compiler
-If you encounter an error while building a wheel during the `pip install` process, you may need to install a C++ compiler on your computer.
-
-### For Windows 10/11
-To install a C++ compiler on Windows 10/11, follow these steps:
-
-1. Install Visual Studio 2022.
-2. Make sure the following components are selected:
-   * Universal Windows Platform development
-   * C++ CMake tools for Windows
-3. Download the MinGW installer from the [MinGW website](https://sourceforge.net/projects/mingw/).
-4. Run the installer and select the `gcc` component.
-
-## Mac Running Intel
-When running a Mac with Intel hardware (not M1), you may run into _clang: error: the clang compiler does not support '-march=native'_ during pip install.
-
-If so set your archflags during pip install. eg: _ARCHFLAGS="-arch x86_64" pip3 install -r requirements.txt_
-
-# Disclaimer
-This is a test project to validate the feasibility of a fully private solution for question answering using LLMs and Vector embeddings. It is not production ready, and it is not meant to be used in production. The models selection is not optimized for performance, but for privacy; but it is possible to use different models and vectorstores to improve performance.
+## Contact

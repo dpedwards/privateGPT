@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "privategpt"
+name = "private-gpt"
 version = "0.1.0"
 description = ""
-authors = ["Ivan Martinez <ivanmartit@gmail.com>"]
+authors = ["Davain Pablo Edwards <core8@gmx.net>"]
 license = "Apache Version 2.0"
 readme = "README.md"
 
