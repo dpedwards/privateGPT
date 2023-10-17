@@ -21,7 +21,7 @@ pip install virtualenv
 ```
 ### 2. Create a virtual environment:
 ```
-python -m venv myenv
+python3 -m venv myenv
 ```
 ### 3. Activate the virtual environment:
 Once the virtual environment is created, you need to activate it:
@@ -70,57 +70,9 @@ pip install tqdm
 pip install sentence_transformers
 ```
 
-### ISSUES DURING INSTALLATION (WINDOWS)
-```
-Collecting dotenv
-  Using cached dotenv-0.0.5.tar.gz (2.4 kB)
-  Preparing metadata (setup.py) ... error
-  error: subprocess-exited-with-error
-  
-  × python setup.py egg_info did not run successfully.
-  │ exit code: 1
-  ╰─> [70 lines of output]
-      /Users/<user>/Desktop/private-gpt/myenv/lib/python3.11/site-packages/setuptools/installer.py:27: SetuptoolsDeprecationWarning: setuptools.installer is deprecated. Requirements should be satisfied by a PEP 517 installer.
-```
-
-The error message suggests that there's a problem with building the `dotenv` package using `setup.py`. The specific line mentioning `setuptools.installer is deprecated` indicates that the package might not be up-to-date with the current best practices and standards related to packaging.
-
-Here are some steps you can take to resolve this:
-
-1. **Update `pip` and `setuptools`**:
-   Ensuring you have the latest versions can sometimes resolve compatibility issues.
-   ```bash
-   pip install --upgrade pip setuptools
-  ```
-
-2. **Use a Different Package**:
-   If you're trying to use `dotenv` for loading environment variables, the more popular package is `python-dotenv`. Perhaps you meant to install this one:
-   ```bash
-   pip install python-dotenv
-   ```
-
-3. **Install Without PEP 517**:
-   As a workaround, you can try to install the package without PEP 517:
-   ```bash
-   pip install dotenv --no-use-pep517
-   ```
-
-4. **Manual Installation**:
-   As a last resort, you can manually download the package from the PyPI repository, unpack it, and install using `setup.py` directly:
-   ```bash
-   wget https://files.pythonhosted.org/packages/source/d/dotenv/dotenv-0.0.5.tar.gz
-   tar xzf dotenv-0.0.5.tar.gz
-   cd dotenv-0.0.5
-   python setup.py install
-   ```
-
-5. **Python Version Compatibility**:
-   Notice that you're using Python 3.11 (as per the path). Some packages may not yet be compatible with the latest versions of Python. If possible, consider creating a virtual environment with an older version of Python (e.g., 3.9 or 3.10) and trying the installation there.
-
-In general, given the error, I would recommend going with the second option and trying to install `python-dotenv` unless you have a specific reason to use the `dotenv` package.
 
 ## Download the llm
-[ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin)
+Store the [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) model in the `llm` folder.
 
 ## Setup env
 
@@ -140,14 +92,27 @@ TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer
 
 ## Run the application
 1. Store files/documents into `source_documents` folder
+
+  <img width="450" src="images/02.png">
+
 2. Create chunks for vector db from own data files/documents
   ```
   python3 ingest.py
    ```
+  <img width="450" src="images/01.png">
+
 3. Chat with llm
   ```
   python3 main.py
   ```
+
+  <img width="450" src="images/03.png">
+
+  <img width="450" src="images/04.png">
+
+  <img width="450" src="images/05.png">
+
+
 
 ## Contact
 core8@gmx.net
