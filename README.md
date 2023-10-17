@@ -137,12 +137,12 @@ EMBEDDINGS_MODEL_NAME: SentenceTransformers embeddings model name (see https://w
 TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer a question
 
 ## Run the application
-1. Store files/ducuments into source_documents
-2. Create chunks from own data files/documents
+1. Store files/documents into `source_documents` folder
+2. Create chunks for vector db from own data files/documents
   ```
   python3 ingest.py
    ```
-4. Chat with llm
+3. Chat with llm
   ```
   python3.main.py
   ```
