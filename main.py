@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import argparse
 import time
 from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
@@ -11,6 +10,7 @@ from langchain.vectorstores import Chroma
 from langchain.llms import GPT4All, LlamaCpp
 import chromadb
 from constants import CHROMA_SETTINGS
+import psycopg2
 
 
 def load_configuration():
@@ -40,55 +40,78 @@ def initialize_llm(model_type, callbacks, config):
     if model_type == "LlamaCpp":
         return LlamaCpp(model_path=config["model"], **common_params)
     elif model_type == "GPT4All":
-        try:
-            return GPT4All(model=config["model"], backend='gptj', **common_params)
-        except Exception as e:
-            print(f"Error initializing GPT4All: {e}")
-            raise
+        return GPT4All(model=config["model"], backend='gptj', **common_params)
     else:
         raise Exception(f"Model type {model_type} is not supported. Please choose one of the following: LlamaCpp, GPT4All")
 
 
-def main():
-    config = load_configuration()
+def initialize_system():
+    try:
+        config = load_configuration()
 
-    args = parse_arguments()
-    embeddings = HuggingFaceEmbeddings(model_name=config["embeddings_model_name"])
-    chroma_client = chromadb.PersistentClient(settings=CHROMA_SETTINGS, path=config["persist_directory"])
-    db = Chroma(persist_directory=config["persist_directory"], embedding_function=embeddings, client_settings=CHROMA_SETTINGS, client=chroma_client)
-    retriever = db.as_retriever(search_kwargs={"k": config["target_source_chunks"]})
-    callbacks = [] if args.mute_stream else [StreamingStdOutCallbackHandler()]
-    llm = initialize_llm(config["model_type"], callbacks, config)
-    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents=not args.hide_source)
+        embeddings = HuggingFaceEmbeddings(model_name=config["embeddings_model_name"])
+        chroma_client = chromadb.PersistentClient(settings=CHROMA_SETTINGS, path=config["persist_directory"])
+        db = Chroma(persist_directory=config["persist_directory"], embedding_function=embeddings, client_settings=CHROMA_SETTINGS, client=chroma_client)
 
-    while True:
-        query = input("\nEnter a query: ")
-        if query == "exit":
-            break
-        if query.strip() == "":
-            continue
+        retriever = db.as_retriever(search_kwargs={"k": config["target_source_chunks"]})
+        callbacks = [StreamingStdOutCallbackHandler()]
+        llm = initialize_llm(config["model_type"], callbacks, config)
 
-        start = time.time()
-        res = qa(query)
-        answer, docs = res['result'], [] if args.hide_source else res['source_documents']
-        end = time.time()
+        qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
+        
+        system = {
+            'llm': llm,
+            'qa': qa,
+            'retriever': retriever
+        }
 
-        print("\n\n> Question:")
-        print(query)
-        print(f"\n> Answer (took {round(end - start, 2)} s.):")
-        print(answer)
+        print(system)  # To see the returned structure
+        return system
 
-        for document in docs:
-            print("\n> " + document.metadata["source"] + ":")
-            print(document.page_content)
+    except Exception as e:
+        print(f"Error during system initialization: {e}")
+        return {}
 
 
-def parse_arguments():
-    parser = argparse.ArgumentParser(description='private-gpt: Ask questions to your documents without an internet connection, using the power of LLMs.')
-    parser.add_argument("--hide-source", "-S", action='store_true', help='Use this flag to disable printing of source documents used for answers.')
-    parser.add_argument("--mute-stream", "-M", action='store_true', help='Use this flag to disable the streaming StdOut callback for LLMs.')
-    return parser.parse_args()
+YOUR_CONNECTION_STRING = "YOUR_DB_CONNECTION_STRING"  # TODO: Add your actual connection string here
+
+def get_nearest_neighbors(connection, embedding_vector, top_n=10):
+    query = """
+    SELECT document, embedding
+    FROM documents_table
+    ORDER BY embedding <-> %s
+    LIMIT %s;
+    """
+    cursor = connection.cursor()
+    cursor.execute(query, (embedding_vector, top_n))
+    results = cursor.fetchall()
+    return results
+
+def ask_question(system, query, hide_source=False, mute_stream=False):
+    if not isinstance(system, dict) or 'qa' not in system:
+        print("Error: Invalid system provided.")
+        return None, [], 0
+
+    start = time.time()
+    res = system['qa'](query)
+    
+    # Log the keys in the returned result to understand its structure
+    print(f"Keys in returned result: {res.keys()}")
+
+    # Use .get() to avoid KeyError
+    answer = res.get('result', "No answer found.")
+    docs = [] if hide_source else res.get('source_documents', [])
+
+    # Check if the answer contains an SQL statement
+    if "SELECT" in answer and "FROM" in answer:
+        # Fetch similar vectors based on the SQL statement (placeholder logic, adapt as needed)
+        connection = psycopg2.connect(YOUR_CONNECTION_STRING)
+        similar_vectors = get_nearest_neighbors(connection, answer)  # Assuming the SQL statement can be used as an embedding_vector (modify as needed)
+        connection.close()
+        answer += f"\n\nEquivalent Vectors: {similar_vectors}"
+
+    end = time.time()
+    duration = end - start
+    return answer, docs, duration
 
 
-if __name__ == "__main__":
-    main()
