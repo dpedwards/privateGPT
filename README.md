@@ -77,7 +77,11 @@ pip psycopg2
 ```
 
 ## Download the llm
-Store the [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) model in the `llm` folder.
+Store the large language models in the `llm/` folder and setup the .env file based on each llm.
+
+- [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) 
+
+- [ggml-vicuna-13b-1.1](https://huggingface.co/eachadea/ggml-vicuna-13b-1.1/blob/main/ggml-vic13b-q8_0.bin)
 
 ## Setup env
 
