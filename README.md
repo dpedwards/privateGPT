@@ -80,8 +80,12 @@ pip psycopg2
 arch -arm64 /usr/local/bin/python3 -m pip install pymupdf
 
 
-## Download the llm
-Store the [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) model in the `llm` folder.
+## Download large language models
+Store the llms in the `llm` folder and setup the env based on each llm.
+
+- [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin)
+
+- [ggml-vic13b-q8_0.bin](https://huggingface.co/eachadea/ggml-vicuna-13b-1.1/blob/main/ggml-vic13b-q8_0.bin) 
 
 ## Setup env
 
