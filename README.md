@@ -99,10 +99,24 @@ EMBEDDINGS_MODEL_NAME: SentenceTransformers embeddings model name (see https://w
 
 TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer a question
 
+## Well known issues
+```
+Error during system initialization: 1 validation error for GPT4All
+__root__
+  GPT4All.__init__() got an unexpected keyword argument 'device' (type=type_error)Error during system initialization: 1 validation error for GPT4All
+__root__
+  GPT4All.__init__() got an unexpected keyword argument 'device' (type=type_error)
+
+Error during system initialization: 1 validation error for GPT4All
+__root__
+  GPT4All.__init__() got an unexpected keyword argument 'device' (type=type_error)
+```
+[https://github.com/imartinez/privateGPT/issues/621](https://github.com/imartinez/privateGPT/issues/621)
+
 ## Run the app
-  ```
-  streamlit run streamlit_app.py
-  ```
+```
+streamlit run streamlit_app.py
+```
 
 ### UI
   <img width="450" src="images/10.png">
@@ -117,13 +131,13 @@ TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer
 
 ### Run the app in Docker container
 #### Build
-  ```
-  docker build -t streamlit_app .
-  ```
+```
+docker build -t streamlit_app .
+ ```
 #### Run
-  ```
-  docker run -p 8501:8501 streamlit_app
-  ```
+```
+docker run -p 8501:8501 streamlit_app
+```
 
 
 
