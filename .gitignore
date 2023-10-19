@@ -6,7 +6,7 @@ models/
 llm/
 
 # Data
-source_documents
+source_documents/
 
 # Local Chroma db
 .chroma/

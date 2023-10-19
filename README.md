@@ -75,6 +75,9 @@ pip tqdm
 pip psycopg2
 
 ```
+### Issues
+# First, make sure you're using Homebrew's Python on Apple Silicon
+arch -arm64 /usr/local/bin/python3 -m pip install pymupdf
 
 
 ## Download the llm
@@ -111,6 +114,20 @@ TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer
 
 ### Complex answer formatting
   <img width="450" src="images/11.png">
+
+### Run the app in Docker container
+#### Build
+  ```
+  docker build -t streamlit_app .
+  ```
+#### Run
+  ```
+  docker run -p 8501:8501 streamlit_app
+  ```
+
+
+
+
 
 
 

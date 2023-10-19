@@ -1,0 +1,258 @@
+id,name,isoCode2L,isoCode3L,geoType,currency,statistaCode,isVisible
+100,Worldwide,,WOR,0,,1.0,0
+101,Asia,,ASI,1,,142.0,0
+102,Europe,,EUR,1,,150.0,0
+103,South America,,SOA,2,,,0
+107,Australia,AU,AUS,3,AUD,36.0,0
+108,Canada,CA,CAN,3,CAD,124.0,0
+109,United States,US,USA,3,USD,840.0,0
+110,Saudi Arabia,SA,SAU,3,SAR,682.0,0
+111,Israel,IL,ISR,3,ILS,376.0,0
+112,South Africa,ZA,ZAF,3,ZAR,710.0,0
+113,Turkey,TR,TUR,3,TRY,792.0,0
+114,Argentina,AR,ARG,3,ARS,32.0,0
+115,Brazil,BR,BRA,3,BRL,76.0,0
+116,Mexico,MX,MEX,3,MXN,484.0,0
+117,China,CN,CHN,3,CNY,156.0,0
+118,Hong Kong,HK,HKG,4,HKD,344.0,0
+119,India,IN,IND,3,INR,356.0,0
+120,Indonesia,ID,IDN,3,IDR,360.0,0
+121,Japan,JP,JPN,3,JPY,392.0,0
+122,Malaysia,MY,MYS,3,MYR,458.0,0
+123,Philippines,PH,PHL,3,PHP,608.0,0
+124,Singapore,SG,SGP,3,SGD,702.0,0
+125,South Korea,KR,KOR,3,KRW,410.0,0
+126,Thailand,TH,THA,3,THB,764.0,0
+127,Vietnam,VN,VNM,3,VND,704.0,0
+128,Austria,AT,AUT,3,EUR,40.0,0
+129,Belgium,BE,BEL,3,EUR,56.0,0
+130,Bulgaria,BG,BGR,3,BGN,100.0,0
+131,Croatia,HR,HRV,3,HRK,191.0,0
+132,Czechia,CZ,CZE,3,CZK,203.0,0
+133,Denmark,DK,DNK,3,DKK,208.0,0
+134,Estonia,EE,EST,3,EUR,233.0,0
+135,Finland,FI,FIN,3,EUR,246.0,0
+136,France,FR,FRA,3,EUR,250.0,0
+137,Germany,DE,DEU,3,EUR,276.0,0
+138,Greece,GR,GRC,3,EUR,300.0,0
+139,Hungary,HU,HUN,3,HUF,348.0,0
+140,Ireland,IE,IRL,3,EUR,372.0,0
+141,Italy,IT,ITA,3,EUR,380.0,0
+142,Latvia,LV,LVA,3,EUR,428.0,0
+143,Lithuania,LT,LTU,3,EUR,440.0,0
+144,Netherlands,NL,NLD,3,EUR,528.0,0
+145,Norway,NO,NOR,3,NOK,578.0,0
+146,Poland,PL,POL,3,PLN,616.0,0
+147,Portugal,PT,PRT,3,EUR,620.0,0
+148,Romania,RO,ROU,3,RON,642.0,0
+149,Russia,RU,RUS,3,RUB,643.0,0
+150,Serbia,RS,SRB,3,RSD,688.0,0
+151,Slovakia,SK,SVK,3,EUR,703.0,0
+152,Slovenia,SI,SVN,3,EUR,705.0,0
+153,Spain,ES,ESP,3,EUR,724.0,0
+154,Sweden,SE,SWE,3,SEK,752.0,0
+155,Switzerland,CH,CHE,3,CHF,756.0,0
+156,United Kingdom,GB,GBR,3,GBP,826.0,0
+157,Chile,CL,CHL,3,CLP,152.0,0
+158,Colombia,CO,COL,3,COP,170.0,0
+159,Morocco,MA,MAR,3,MAD,504.0,0
+160,Nigeria,NG,NGA,3,NGN,566.0,0
+161,New Zealand,NZ,NZL,3,NZD,554.0,0
+163,Angola,AO,AGO,3,AOA,24.0,0
+165,Azerbaijan,AZ,AZE,3,AZN,31.0,0
+167,Bahrain,BH,BHR,3,BHD,48.0,0
+168,Bangladesh,BD,BGD,3,BDT,50.0,0
+169,Armenia,AM,ARM,3,AMD,51.0,0
+172,Bhutan,BT,BTN,3,BTN,64.0,0
+173,Bolivia,BO,BOL,3,BOB,68.0,0
+174,Bosnia and Herzegovina,BA,BIH,3,BAM,70.0,0
+175,Botswana,BW,BWA,3,BWP,72.0,0
+177,Belize,BZ,BLZ,3,BZD,84.0,0
+181,Brunei Darussalam,BN,BRN,3,BND,96.0,0
+182,Myanmar,MM,MMR,3,MMK,104.0,0
+183,Burundi,BI,BDI,3,BIF,108.0,0
+184,Belarus,BY,BLR,3,BYN,112.0,0
+185,Cambodia,KH,KHM,3,KHR,116.0,0
+186,Cameroon,CM,CMR,3,XAF,120.0,0
+190,Sri Lanka,LK,LKA,3,LKR,144.0,0
+191,Chad,TD,TCD,3,XAF,148.0,0
+199,Republic of the Congo,CG,COG,3,XAF,178.0,0
+200,Democratic Republic of the Congo,CD,COD,3,CDF,180.0,0
+202,Costa Rica,CR,CRI,3,CRC,188.0,0
+203,Cuba,CU,CUB,3,CUC,192.0,0
+204,Cyprus,CY,CYP,3,EUR,196.0,0
+205,Benin,BJ,BEN,3,XOF,204.0,0
+207,Dominican Republic,DO,DOM,3,DOP,214.0,0
+208,Ecuador,EC,ECU,3,USD,218.0,0
+209,El Salvador,SV,SLV,3,USD,222.0,0
+210,Equatorial Guinea,GQ,GNQ,3,XAF,226.0,0
+211,Ethiopia,ET,ETH,3,ETB,231.0,0
+216,Fiji,FJ,FJI,3,FJD,,0
+221,Djibouti,DJ,DJI,3,DJF,262.0,0
+222,Gabon,GA,GAB,3,XAF,266.0,0
+223,Georgia,GE,GEO,3,GEL,268.0,0
+224,Gambia,GM,GMB,3,GMD,270.0,0
+226,Ghana,GH,GHA,3,GHS,288.0,0
+233,Guatemala,GT,GTM,3,GTQ,320.0,0
+234,Guinea,GN,GIN,3,GNF,324.0,0
+235,Guyana,GY,GUY,3,GYD,328.0,0
+236,Haiti,HT,HTI,3,HTG,332.0,0
+239,Honduras,HN,HND,3,HNL,340.0,0
+240,Iceland,IS,ISL,3,ISK,352.0,0
+241,Iran,IR,IRN,3,IRR,364.0,0
+242,Iraq,IQ,IRQ,3,IQD,368.0,0
+243,Ivory Coast,CI,CIV,3,XOF,384.0,0
+244,Jamaica,JM,JAM,3,JMD,388.0,0
+245,Kazakhstan,KZ,KAZ,3,KZT,398.0,0
+246,Jordan,JO,JOR,3,JOD,400.0,0
+247,Kenya,KE,KEN,3,KES,404.0,0
+248,North Korea,KP,PRK,3,KPW,408.0,0
+249,Kuwait,KW,KWT,3,KWD,414.0,0
+250,Kyrgyzstan,KG,KGZ,3,KGS,417.0,0
+251,Laos,LA,LAO,3,LAK,418.0,0
+252,Lebanon,LB,LBN,3,LBP,422.0,0
+253,Lesotho,LS,LSO,3,LSL,,0
+255,Libya,LY,LBY,3,LYD,434.0,0
+257,Luxembourg,LU,LUX,3,EUR,442.0,0
+259,Madagascar,MG,MDG,3,MGA,450.0,0
+260,Malawi,MW,MWI,3,MWK,454.0,0
+262,Mali,ML,MLI,3,XOF,466.0,0
+263,Malta,MT,MLT,3,EUR,470.0,0
+266,Mauritius,MU,MUS,3,MUR,480.0,0
+268,Mongolia,MN,MNG,3,MNT,496.0,0
+269,Moldova,MD,MDA,3,MDL,498.0,0
+270,Montenegro,ME,MNE,3,EUR,499.0,0
+273,Mozambique,MZ,MOZ,3,MZN,508.0,0
+274,Oman,OM,OMN,3,OMR,512.0,0
+275,Namibia,NA,NAM,3,NAD,516.0,0
+277,Nepal,NP,NPL,3,NPR,524.0,0
+285,Nicaragua,NI,NIC,3,NIO,558.0,0
+286,Niger,NE,NER,3,XOF,562.0,0
+294,Pakistan,PK,PAK,3,PKR,586.0,0
+295,Panama,PA,PAN,3,PAB,591.0,0
+296,Papua New Guinea,PG,PNG,3,PGK,598.0,0
+297,Paraguay,PY,PRY,3,PYG,600.0,0
+298,Peru,PE,PER,3,PEN,604.0,0
+301,Timor-Leste,TL,TLS,3,USD,626.0,0
+302,Puerto Rico,PR,PRI,4,USD,,0
+303,Qatar,QA,QAT,3,QAR,634.0,0
+305,Rwanda,RW,RWA,3,RWF,646.0,0
+315,Senegal,SN,SEN,3,XOF,686.0,0
+316,Seychelles,SC,SYC,3,SCR,690.0,0
+317,Sierra Leone,SL,SLE,3,SLL,694.0,0
+318,Somalia,SO,SOM,3,SOS,706.0,0
+319,Zimbabwe,ZW,ZWE,3,ZWL,716.0,0
+320,South Sudan,SS,SSD,3,SSP,728.0,0
+322,Sudan,SD,SDN,3,SDG,736.0,0
+323,Suriname,SR,SUR,3,SRD,740.0,0
+326,Syria,SY,SYR,3,SYP,760.0,0
+327,Tajikistan,TJ,TJK,3,TJS,762.0,0
+328,Togo,TG,TGO,3,XOF,768.0,0
+332,United Arab Emirates,AE,ARE,3,AED,784.0,0
+333,Tunisia,TN,TUN,3,TND,788.0,0
+334,Turkmenistan,TM,TKM,3,TMT,795.0,0
+337,Uganda,UG,UGA,3,UGX,800.0,0
+338,Ukraine,UA,UKR,3,UAH,804.0,0
+339,North Macedonia,MK,MKD,3,MKD,807.0,0
+340,Egypt,EG,EGY,3,EGP,818.0,0
+344,Tanzania,TZ,TZA,3,TZS,834.0,0
+346,Burkina Faso,BF,BFA,3,XOF,854.0,0
+347,Uruguay,UY,URY,3,UYU,858.0,0
+348,Uzbekistan,UZ,UZB,3,UZS,860.0,0
+349,Venezuela,VE,VEN,3,VES,862.0,0
+352,Yemen,YE,YEM,3,YER,887.0,0
+353,Zambia,ZM,ZMB,3,ZMW,894.0,0
+354,Afghanistan,AF,AFG,3,AFN,4.0,0
+355,Albania,AL,ALB,3,ALL,8.0,0
+357,Algeria,DZ,DZA,3,DZD,12.0,0
+360,Taiwan,TW,TWN,4,TWD,,0
+361,Mainland China,DA,MCH,4,CNY,,0
+510,Alabama,AA,ALA,5,USD,,0
+511,Alaska,AK,AKA,5,USD,,0
+512,Arizona,AI,AZA,5,USD,,0
+513,Arkansas,AN,ARK,5,USD,,0
+514,California,CS,CAL,5,USD,,0
+515,Colorado,UC,COR,5,USD,,0
+516,Connecticut,CT,CON,5,USD,,0
+517,Delaware,DL,DEL,5,USD,,0
+518,District of Columbia,DC,WDC,5,USD,,0
+519,Florida,FL,FLA,5,USD,,0
+520,Georgia,GO,GAG,5,USD,,0
+521,Hawaii,HI,HAI,5,USD,,0
+522,Idaho,IH,IDH,5,USD,,0
+523,Illinois,IO,ILL,5,USD,,0
+524,Indiana,II,INA,5,USD,,0
+525,Iowa,IA,IOA,5,USD,,0
+526,Kansas,KS,KAN,5,USD,,0
+527,Kentucky,KY,KEY,5,USD,,0
+528,Louisiana,LO,LOU,5,USD,,0
+529,Maine,UM,MAI,5,USD,,0
+530,Maryland,SM,MAD,5,USD,,0
+531,Massachusetts,MC,MAS,5,USD,,0
+532,Michigan,MI,MIC,5,USD,,0
+533,Minnesota,UN,MIN,5,USD,,0
+534,Mississippi,MS,MIS,5,USD,,0
+535,Missouri,MO,MRI,5,USD,,0
+536,Montana,UO,MON,5,USD,,0
+537,Nebraska,NB,NEB,5,USD,,0
+538,Nevada,NV,NEV,5,USD,,0
+539,New Hampshire,NH,NHA,5,USD,,0
+540,New Jersey,NJ,NJE,5,USD,,0
+541,New Mexico,NM,NME,5,USD,,0
+542,New York,NY,NYS,5,USD,,0
+543,North Carolina,NC,NCA,5,USD,,0
+544,North Dakota,ND,NDA,5,USD,,0
+545,Ohio,OH,OHI,5,USD,,0
+546,Oklahoma,OK,OKL,5,USD,,0
+547,Oregon,OR,ORE,5,USD,,0
+548,Pennsylvania,PN,PEN,5,USD,,0
+549,Rhode Island,RI,RIS,5,USD,,0
+550,South Carolina,SU,SCA,5,USD,,0
+551,South Dakota,ST,SDA,5,USD,,0
+552,Tennessee,TS,TEN,5,USD,,0
+553,Texas,TX,TEX,5,USD,,0
+554,Utah,UT,UTA,5,USD,,0
+555,Vermont,VT,VMT,5,USD,,0
+556,Virginia,VA,VGN,5,USD,,0
+557,Washington,WA,WTN,5,USD,,0
+558,West Virginia,WV,WVI,5,USD,,0
+559,Wisconsin,WI,WIS,5,USD,,0
+560,Wyoming,WY,WYO,5,USD,,0
+610,Americas,,AME,1,,,0
+612,Central America,,CAM,2,,,0
+613,North America,,NRA,2,,3.0,0
+614,Caribbean,,CAR,2,,,0
+621,Southern Europe,,SEU,2,,,0
+622,Eastern Europe,,EEU,2,,,0
+623,Central & Western Europe,,CWE,2,,,0
+625,Northern Europe,,NEU,2,,,0
+630,Africa,,AFR,1,,2.0,0
+631,Northern Africa,,NAF,2,,,0
+632,Central Africa,,CFR,2,,140.0,0
+633,Western Africa,,WAF,2,,,0
+634,Southern Africa,,SAF,2,,,0
+635,Eastern Africa,,EAF,2,,,0
+641,Southern Asia,,SAS,2,,,0
+642,Western Asia,,WAS,2,,,0
+643,Southeast Asia,,SEA,2,,,0
+644,Eastern Asia,,EAS,2,,,0
+645,Central Asia,,CAS,2,,,0
+660,Australia & Oceania,,AOC,1,,10002.0,0
+711,NAFTA,,NTA,7,,,0
+721,EU-27,,E27,7,,10008.0,0
+722,Baltics,,ELL,7,,,0
+723,D-A-CH,,DAC,7,,10007.0,0
+724,Benelux,,BNL,7,,,0
+725,Nordics,,DNS,7,,,0
+731,ASEAN,,ASE,7,,,0
+732,GCC,,GCC,7,,,0
+770,BRICS,,BRC,7,,,0
+771,EAEU,,EAU,7,,,0
+772,G7,,GE7,7,,,0
+773,G20,,G20,7,,,0
+774,CIS,,CIS,7,,,0
+780,APAC,,APC,9,,10010.0,0
+781,EMEA,,EMA,9,,,0
+782,MENA,,MNA,9,,10011.0,0
+783,LATAM,,LTM,9,,419.0,0
+999,Not specified,,,0,,,0
