@@ -75,10 +75,6 @@ pip tqdm
 pip psycopg2
 
 ```
-### Issues
-# First, make sure you're using Homebrew's Python on Apple Silicon
-arch -arm64 /usr/local/bin/python3 -m pip install pymupdf
-
 
 ## Download the llm
 Store the [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) model in the `llm` folder.
