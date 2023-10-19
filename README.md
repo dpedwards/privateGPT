@@ -21,17 +21,17 @@ pip install virtualenv
 ```
 ### 2. Create a virtual environment:
 ```
-python3 -m venv myenv
+python -m venv myenv
 ```
 ### 3. Activate the virtual environment:
 Once the virtual environment is created, you need to activate it:
 - Windows:
 ```
-source myenv/bin/activate
+myenv\Scripts\activate
 ```
 - macOS and Linux:
 ```
-myenv\Scripts\activate
+source myenv/bin/activate
 ```
 
 ### 4. Deactivate the virtual environment:
@@ -68,11 +68,20 @@ pip install pandoc
 pip install pypandoc
 pip install tqdm
 pip install sentence_transformers
+pip streamlit
+pip wheel
+pip subprocess
+pip tqdm
+pip psycopg2
+
 ```
 
-
 ## Download the llm
-Store the [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) model in the `llm` folder.
+Store the large language models in the `llm/` folder and setup the .env file based on each llm.
+
+- [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) 
+
+- [ggml-vicuna-13b-1.1](https://huggingface.co/eachadea/ggml-vicuna-13b-1.1/blob/main/ggml-vic13b-q8_0.bin)
 
 ## Setup env
 
@@ -90,27 +99,35 @@ EMBEDDINGS_MODEL_NAME: SentenceTransformers embeddings model name (see https://w
 
 TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer a question
 
-## Run the application
-1. Store files/documents into `source_documents` folder
-
-  <img width="450" src="images/02.png">
-
-2. Create chunks for vector db from own data files/documents
+## Run the app
   ```
-  python3 ingest.py
-   ```
-  <img width="450" src="images/01.png">
-
-3. Chat with llm
-  ```
-  python3 main.py
+  streamlit run streamlit_app.py
   ```
 
-  <img width="450" src="images/03.png">
+### UI
+  <img width="450" src="images/10.png">
 
-  <img width="450" src="images/04.png">
+### Export chat history
+  <img width="450" src="images/08.png">
 
-  <img width="450" src="images/05.png">
+  <img width="450" src="images/09.png">
+
+### Complex answer formatting
+  <img width="450" src="images/11.png">
+
+### Run the app in Docker container
+#### Build
+  ```
+  docker build -t streamlit_app .
+  ```
+#### Run
+  ```
+  docker run -p 8501:8501 streamlit_app
+  ```
+
+
+
+
 
 
 

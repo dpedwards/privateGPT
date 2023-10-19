@@ -178,7 +178,7 @@ def main():
         for batched_chromadb_insertion in batched_chromadb_insertions:
             db.add_documents(batched_chromadb_insertion)
 
-    print(f"Ingestion complete! You can now run private-gpt.py to query your documents")
+    print(f"Ingestion complete! You can now use the interface to query your documents")
 
 
 if __name__ == "__main__":
