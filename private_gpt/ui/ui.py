@@ -136,6 +136,13 @@ class PrivateGptUi:
 
                 sources = Source.curate_sources(response)
 
+            case "Search on Database":
+                db_response = self._chunks_service.database_chat(
+                    result=all_results,
+                    use_context=True,
+                )
+                yield from yield_deltas(db_response)
+
                 yield "\n\n\n".join(
                     f"{index}. **{source.file} "
                     f"(page {source.page})**\n "
@@ -184,7 +191,7 @@ class PrivateGptUi:
             with gr.Row():
                 with gr.Column(scale=3, variant="compact"):
                     mode = gr.Radio(
-                        ["Query Docs", "Search in Docs", "LLM Chat"],
+                        ["Query Docs", "Search in Docs", "LLM Chat", "Database Chat"],
                         label="Mode",
                         value="Query Docs",
                     )
