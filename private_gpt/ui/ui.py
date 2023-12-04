@@ -17,6 +17,7 @@ from private_gpt.di import global_injector
 from private_gpt.server.chat.chat_service import ChatService, CompletionGen
 from private_gpt.server.chunks.chunks_service import Chunk, ChunksService
 from private_gpt.server.ingest.ingest_service import IngestService
+#from private_gpt.server.database.chat_service import DatabaseService
 from private_gpt.settings.settings import settings
 from private_gpt.ui.images import logo_svg
 
@@ -138,7 +139,7 @@ class PrivateGptUi:
 
             case "Search on Database":
                 db_response = self._chunks_service.database_chat(
-                    result=all_results,
+                    result='',
                     use_context=True,
                 )
                 yield from yield_deltas(db_response)
