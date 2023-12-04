@@ -1,4 +1,4 @@
-# 🔒 PrivateGPT 📑
+#  PrivateGPT 📑
 
 [![Tests](https://github.com/imartinez/privateGPT/actions/workflows/tests.yml/badge.svg)](https://github.com/imartinez/privateGPT/actions/workflows/tests.yml?query=branch%3Amain)
 [![Website](https://img.shields.io/website?up_message=check%20it&down_message=down&url=https%3A%2F%2Fdocs.privategpt.dev%2F&label=Documentation)](https://docs.privategpt.dev/)
@@ -55,12 +55,6 @@ is a risk those industries cannot take.
 ### Primordial version
 The first version of PrivateGPT was launched in May 2023 as a novel approach to address the privacy
 concerns by using LLMs in a complete offline way.
-This was done by leveraging existing technologies developed by the thriving Open Source AI community:
-[LangChain](https://github.com/hwchase17/langchain), [LlamaIndex](https://www.llamaindex.ai/),
-[GPT4All](https://github.com/nomic-ai/gpt4all),
-[LlamaCpp](https://github.com/ggerganov/llama.cpp),
-[Chroma](https://www.trychroma.com/)
-and [SentenceTransformers](https://www.sbert.net/).
 
 That version, which rapidly became a go-to project for privacy-sensitive setups and served as the seed
 for thousands of local-focused generative AI projects, was the foundation of what PrivateGPT is becoming nowadays;
@@ -119,34 +113,11 @@ typing checks, just run `make check` before committing to make sure your code is
 Remember to test your code! You'll find a tests folder with helpers, and you can run
 tests using `make test` command.
 
-Interested in contributing to PrivateGPT? We have the following challenges ahead of us in case
-you want to give a hand:
+Don't know what to contribute? Here is the public 
+[Project Board](https://github.com/users/imartinez/projects/3) with several ideas. 
 
-### Improvements
-- Better RAG pipeline implementation (improvements to both indexing and querying stages)
-- Code documentation
-- Expose execution parameters such as top_p, temperature, max_tokens... in Completions and Chat Completions
-- Expose chunk size in Ingest API
-- Implement Update and Delete document in Ingest API
-- Add information about tokens consumption in each response
-- Add to Completion APIs (chat and completion) the context docs used to answer the question
-- In “model” field return the actual LLM or Embeddings model name used
-
-### Features
-- Implement concurrency lock to avoid errors when there are several calls to the local LlamaCPP model
-- API key-based request control to the API
-- Support for Sagemaker
-- Support Function calling
-- Add md5 to check files already ingested
-- Select a document to query in the UI
-- Better observability of the RAG pipeline
-
-### Project Infrastructure
-- Packaged version as a local desktop app (windows executable, mac app, linux app)
-- Dockerize the application for platforms outside linux (Docker Desktop for Mac and Windows)
-- Document how to deploy to AWS, GCP and Azure.
-
-##
+Head over to Discord 
+#contributors channel and ask for write permissions on that Github project.
 
 ## 💬 Community
 Join the conversation around PrivateGPT on our:
@@ -176,147 +147,15 @@ year = {2023}
 Martínez Toro, I., Gallego Vico, D., & Orgaz, P. (2023). PrivateGPT [Computer software]. https://github.com/imartinez/privateGPT
 ```
 
-```
-privateGPT
-├─ .dockerignore
-│  ├─ chatgpt-13b.ggmlv3.q8_0.bin
-│  ├─ embedding
-│  │  ├─ .gitattributes
-│  │  ├─ 1_Pooling
-│  │  │  └─ config.json
-│  │  ├─ README.md
-│  │  ├─ config.json
-│  │  ├─ config_sentence_transformers.json
-│  │  ├─ modules.json
-│  │  ├─ pytorch_model.bin
-│  │  ├─ sentence_bert_config.json
-│  │  ├─ special_tokens_map.json
-│  │  ├─ tokenizer.json
-│  │  ├─ tokenizer_config.json
-│  │  └─ vocab.txt
-│  ├─ mistral-7b-instruct-v0.1.Q4_K_M.gguf
-│  └─ venketh
-│     └─ gpt4-x-vicuna-13b-gguf
-│        └─ gpt4-x-vicuna-13B.gguf.q6_K.bin
-├─ poetry.lock
-├─ private_gpt
-│  ├─ __init__.py
-│  ├─ __main__.py
-│  ├─ components
-│  │  ├─ __init__.py
-│  │  ├─ embedding
-│  │  │  ├─ __init__.py
-│  │  │  ├─ custom
-│  │  │  │  ├─ __init__.py
-│  │  │  │  └─ sagemaker.py
-│  │  │  └─ embedding_component.py
-│  │  ├─ llm
-│  │  │  ├─ __init__.py
-│  │  │  ├─ custom
-│  │  │  │  ├─ __init__.py
-│  │  │  │  └─ sagemaker.py
-│  │  │  └─ llm_component.py
-│  │  ├─ node_store
-│  │  │  ├─ __init__.py
-│  │  │  └─ node_store_component.py
-│  │  └─ vector_store
-│  │     ├─ __init__.py
-│  │     ├─ batched_chroma.py
-│  │     └─ vector_store_component.py
-│  ├─ constants.py
-│  ├─ di.py
-│  ├─ launcher.py
-│  ├─ main.py
-│  ├─ open_ai
-│  │  ├─ __init__.py
-│  │  ├─ extensions
-│  │  │  ├─ __init__.py
-│  │  │  └─ context_filter.py
-│  │  └─ openai_models.py
-│  ├─ paths.py
-│  ├─ server
-│  │  ├─ __init__.py
-│  │  ├─ chat
-│  │  │  ├─ __init__.py
-│  │  │  ├─ chat_router.py
-│  │  │  └─ chat_service.py
-│  │  ├─ chunks
-│  │  │  ├─ __init__.py
-│  │  │  ├─ chunks_router.py
-│  │  │  └─ chunks_service.py
-│  │  ├─ completions
-│  │  │  ├─ __init__.py
-│  │  │  └─ completions_router.py
-│  │  ├─ embeddings
-│  │  │  ├─ __init__.py
-│  │  │  ├─ embeddings_router.py
-│  │  │  └─ embeddings_service.py
-│  │  ├─ health
-│  │  │  ├─ __init__.py
-│  │  │  └─ health_router.py
-│  │  ├─ ingest
-│  │  │  ├─ __init__.py
-│  │  │  ├─ ingest_router.py
-│  │  │  ├─ ingest_service.py
-│  │  │  └─ ingest_watcher.py
-│  │  └─ utils
-│  │     ├─ __init__.py
-│  │     └─ auth.py
-│  ├─ settings
-│  │  ├─ __init__.py
-│  │  ├─ settings.py
-│  │  ├─ settings_loader.py
-│  │  └─ yaml.py
-│  ├─ ui
-│  │  ├─ __init__.py
-│  │  ├─ avatar-bot.ico
-│  │  ├─ images.py
-│  │  └─ ui.py
-│  └─ utils
-│     ├─ __init__.py
-│     └─ typing.py
-├─ pyproject.toml
-├─ scripts
-│  ├─ __init__.py
-│  ├─ extract_openapi.py
-│  ├─ ingest_folder.py
-│  ├─ setup
-│  └─ utils.py
-├─ settings-docker.yaml
-├─ settings-local.yaml
-├─ settings-mock.yaml
-├─ settings-sagemaker.yaml
-├─ settings-test.yaml
-├─ settings.yaml
-├─ tests
-│  ├─ __init__.py
-│  ├─ conftest.py
-│  ├─ fixtures
-│  │  ├─ __init__.py
-│  │  ├─ auto_close_qdrant.py
-│  │  ├─ fast_api_test_client.py
-│  │  ├─ ingest_helper.py
-│  │  └─ mock_injector.py
-│  ├─ server
-│  │  ├─ chat
-│  │  │  └─ test_chat_routes.py
-│  │  ├─ chunks
-│  │  │  ├─ chunk_test.txt
-│  │  │  └─ test_chunk_routes.py
-│  │  ├─ embeddings
-│  │  │  └─ test_embedding_routes.py
-│  │  ├─ ingest
-│  │  │  ├─ test.pdf
-│  │  │  ├─ test.txt
-│  │  │  └─ test_ingest_routes.py
-│  │  └─ utils
-│  │     ├─ test_auth.py
-│  │     └─ test_simple_auth.py
-│  ├─ settings
-│  │  ├─ test_settings.py
-│  │  └─ test_settings_loader.py
-│  └─ ui
-│     └─ test_ui.py
-└─ version.txt
+## 🤗 Partners & Supporters
+PrivateGPT is actively supported by the teams behind:
+* [Qdrant](https://qdrant.tech/), providing the default vector database
+* [Fern](https://buildwithfern.com/), providing Documentation and SDKs
+* [LlamaIndex](https://www.llamaindex.ai/), providing the base RAG framework and abstractions
 
-```
+This project has been strongly influenced and supported by other amazing projects like 
+[LangChain](https://github.com/hwchase17/langchain),
+[GPT4All](https://github.com/nomic-ai/gpt4all),
+[LlamaCpp](https://github.com/ggerganov/llama.cpp),
+[Chroma](https://www.trychroma.com/)
+and [SentenceTransformers](https://www.sbert.net/).
