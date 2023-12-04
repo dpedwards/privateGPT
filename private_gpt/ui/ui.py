@@ -116,6 +116,17 @@ class PrivateGptUi:
         all_messages = [*build_history(), new_message]
         match mode:
             case "Query Docs":
+                # Add a system message to force the behaviour of the LLM
+                # to answer only questions about the provided context.
+                all_messages.insert(
+                    0,
+                    ChatMessage(
+                        content="You can only answer questions about the provided context. If you know the answer "
+                        "but it is not based in the provided context, don't provide the answer, just state "
+                        "the answer is not in the context provided.",
+                        role=MessageRole.SYSTEM,
+                    ),
+                )
                 query_stream = self._chat_service.stream_chat(
                     messages=all_messages,
                     use_context=True,
@@ -164,10 +175,8 @@ class PrivateGptUi:
 
     def _upload_file(self, files: list[str]) -> None:
         logger.debug("Loading count=%s files", len(files))
-        for file in files:
-            logger.info("Loading file=%s", file)
-            path = Path(file)
-            self._ingest_service.ingest(file_name=path.name, file_data=path)
+        paths = [Path(file) for file in files]
+        self._ingest_service.bulk_ingest([(str(path.name), path) for path in paths])
 
     def _build_ui_blocks(self) -> gr.Blocks:
         logger.debug("Creating the UI blocks")
