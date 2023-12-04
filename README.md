@@ -175,3 +175,148 @@ year = {2023}
 ```
 Martínez Toro, I., Gallego Vico, D., & Orgaz, P. (2023). PrivateGPT [Computer software]. https://github.com/imartinez/privateGPT
 ```
+
+```
+privateGPT
+├─ .dockerignore
+│  ├─ chatgpt-13b.ggmlv3.q8_0.bin
+│  ├─ embedding
+│  │  ├─ .gitattributes
+│  │  ├─ 1_Pooling
+│  │  │  └─ config.json
+│  │  ├─ README.md
+│  │  ├─ config.json
+│  │  ├─ config_sentence_transformers.json
+│  │  ├─ modules.json
+│  │  ├─ pytorch_model.bin
+│  │  ├─ sentence_bert_config.json
+│  │  ├─ special_tokens_map.json
+│  │  ├─ tokenizer.json
+│  │  ├─ tokenizer_config.json
+│  │  └─ vocab.txt
+│  ├─ mistral-7b-instruct-v0.1.Q4_K_M.gguf
+│  └─ venketh
+│     └─ gpt4-x-vicuna-13b-gguf
+│        └─ gpt4-x-vicuna-13B.gguf.q6_K.bin
+├─ poetry.lock
+├─ private_gpt
+│  ├─ __init__.py
+│  ├─ __main__.py
+│  ├─ components
+│  │  ├─ __init__.py
+│  │  ├─ embedding
+│  │  │  ├─ __init__.py
+│  │  │  ├─ custom
+│  │  │  │  ├─ __init__.py
+│  │  │  │  └─ sagemaker.py
+│  │  │  └─ embedding_component.py
+│  │  ├─ llm
+│  │  │  ├─ __init__.py
+│  │  │  ├─ custom
+│  │  │  │  ├─ __init__.py
+│  │  │  │  └─ sagemaker.py
+│  │  │  └─ llm_component.py
+│  │  ├─ node_store
+│  │  │  ├─ __init__.py
+│  │  │  └─ node_store_component.py
+│  │  └─ vector_store
+│  │     ├─ __init__.py
+│  │     ├─ batched_chroma.py
+│  │     └─ vector_store_component.py
+│  ├─ constants.py
+│  ├─ di.py
+│  ├─ launcher.py
+│  ├─ main.py
+│  ├─ open_ai
+│  │  ├─ __init__.py
+│  │  ├─ extensions
+│  │  │  ├─ __init__.py
+│  │  │  └─ context_filter.py
+│  │  └─ openai_models.py
+│  ├─ paths.py
+│  ├─ server
+│  │  ├─ __init__.py
+│  │  ├─ chat
+│  │  │  ├─ __init__.py
+│  │  │  ├─ chat_router.py
+│  │  │  └─ chat_service.py
+│  │  ├─ chunks
+│  │  │  ├─ __init__.py
+│  │  │  ├─ chunks_router.py
+│  │  │  └─ chunks_service.py
+│  │  ├─ completions
+│  │  │  ├─ __init__.py
+│  │  │  └─ completions_router.py
+│  │  ├─ embeddings
+│  │  │  ├─ __init__.py
+│  │  │  ├─ embeddings_router.py
+│  │  │  └─ embeddings_service.py
+│  │  ├─ health
+│  │  │  ├─ __init__.py
+│  │  │  └─ health_router.py
+│  │  ├─ ingest
+│  │  │  ├─ __init__.py
+│  │  │  ├─ ingest_router.py
+│  │  │  ├─ ingest_service.py
+│  │  │  └─ ingest_watcher.py
+│  │  └─ utils
+│  │     ├─ __init__.py
+│  │     └─ auth.py
+│  ├─ settings
+│  │  ├─ __init__.py
+│  │  ├─ settings.py
+│  │  ├─ settings_loader.py
+│  │  └─ yaml.py
+│  ├─ ui
+│  │  ├─ __init__.py
+│  │  ├─ avatar-bot.ico
+│  │  ├─ images.py
+│  │  └─ ui.py
+│  └─ utils
+│     ├─ __init__.py
+│     └─ typing.py
+├─ pyproject.toml
+├─ scripts
+│  ├─ __init__.py
+│  ├─ extract_openapi.py
+│  ├─ ingest_folder.py
+│  ├─ setup
+│  └─ utils.py
+├─ settings-docker.yaml
+├─ settings-local.yaml
+├─ settings-mock.yaml
+├─ settings-sagemaker.yaml
+├─ settings-test.yaml
+├─ settings.yaml
+├─ tests
+│  ├─ __init__.py
+│  ├─ conftest.py
+│  ├─ fixtures
+│  │  ├─ __init__.py
+│  │  ├─ auto_close_qdrant.py
+│  │  ├─ fast_api_test_client.py
+│  │  ├─ ingest_helper.py
+│  │  └─ mock_injector.py
+│  ├─ server
+│  │  ├─ chat
+│  │  │  └─ test_chat_routes.py
+│  │  ├─ chunks
+│  │  │  ├─ chunk_test.txt
+│  │  │  └─ test_chunk_routes.py
+│  │  ├─ embeddings
+│  │  │  └─ test_embedding_routes.py
+│  │  ├─ ingest
+│  │  │  ├─ test.pdf
+│  │  │  ├─ test.txt
+│  │  │  └─ test_ingest_routes.py
+│  │  └─ utils
+│  │     ├─ test_auth.py
+│  │     └─ test_simple_auth.py
+│  ├─ settings
+│  │  ├─ test_settings.py
+│  │  └─ test_settings_loader.py
+│  └─ ui
+│     └─ test_ui.py
+└─ version.txt
+
+```
