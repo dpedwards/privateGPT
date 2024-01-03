@@ -384,6 +384,28 @@
           }
         }
       }
+    },
+    "/sql": {
+      "get": {
+        "tags": [
+          "SQL"
+        ],
+        "summary": "SQL",
+        "description": "Chat with SQL database.",
+        "operationId": "sql_database_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SQLResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -807,6 +829,17 @@
         },
         "type": "object",
         "title": "HealthResponse"
+      },
+      "SQLResponse": {
+        "properties": {
+          "status": {
+            "const": "ok",
+            "title": "Status",
+            "default": "ok"
+          }
+        },
+        "type": "object",
+        "title": "SQLResponse"
       },
       "IngestResponse": {
         "properties": {
