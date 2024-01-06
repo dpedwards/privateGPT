@@ -1,63 +1,55 @@
-from fastapi import APIRouter, Request
-from starlette.responses import StreamingResponse
-from langchain.llms import LlamaCpp
-from langchain.utilities import SQLDatabase
-from langchain.chains import create_sql_query_chain
-from langchain.callbacks.manager import CallbackManager
-from langchain_experimental.sql import SQLDatabaseChain
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+import os
+import dotenv
+from fastapi import FastAPI, APIRouter, Request
+from starlette.responses import JSONResponse
 from pydantic import BaseModel
-from langchain.agents import create_sql_agent
-from langchain.agents.agent_toolkits import SQLDatabaseToolkit
-from langchain.agents.agent_types import AgentType
-from langchain.sql_database import SQLDatabase
-from langchain.llms import LlamaCpp  # Import LlamaCpp
+from transformers import AutoTokenizer
+from langchain.llms import GPT4All
+from langchain_community.llms import OpenAI
+from langchain_community.utilities import SQLDatabase
+from langchain_experimental.sql import SQLDatabaseChain
 
-# Define the API router
+# Load environment variables
+dotenv.load_dotenv()
+
+# Initialize FastAPI and the API router
+app = FastAPI()
 sql_router = APIRouter(tags=["SQL"])
 
+# Define the SQLRequestBody class for handling requests
 class SQLRequestBody(BaseModel):
     query: str
 
-# Initialize the Langchain SQL database
-db = SQLDatabase.from_uri("sqlite:////Users/dpedwards/Documents/MyRepositores/privateGPT/local_data/sql/Chinook.db")
+# Environment variables
+use_local_llm = os.getenv("USE_LOCAL_LLM", "false").lower() == "true"
+model_path = os.getenv("MODEL_PATH")
 
-# Create the LLM instance
-llm_model_path = "/Users/dpedwards/Documents/MyRepositores/privateGPT/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf"
-llm = LlamaCpp(
-    model_path=llm_model_path,  # Specify model_path explicitly
-    temperature=0.0,
-    n_ctx=10000,
-    n_gpu_layers=15,
-    n_threads=3,
-    n_batch=512,
-    f16_kv=True,
-    verbose=True,
-    repeat_penalty=1.8
-)
+# Database setup
+db_uri = "sqlite:////Users/dpedwards/Documents/Statista/Repositories/privateGPT/local_data/sql/Chinook.db"
+db = SQLDatabase.from_uri(db_uri)
 
-# Create the SQL query chain
-chain = create_sql_query_chain(llm, db)
+# LLM setup
+if use_local_llm and model_path:
+    model_name = "gpt2-xl"  # You can choose a different LLM model
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    llm = GPT4All(model=model_path, backend="gptj", verbose=True)
+else:
+    # Fallback to OpenAI model
+    llm = OpenAI(temperature=0, verbose=True)
 
+# SQL Agent setup with LLM and database
+db_chain = SQLDatabaseChain.from_llm(llm, db, verbose=True)
+
+# Define the endpoint for SQL queries
 @sql_router.post("/sql")
-async def sql_query(request: Request, body: SQLRequestBody) -> StreamingResponse:
-    """
-    Execute a SQL query using the provided LLM and toolkit.
-    """
-    # Get the user's SQL query
+async def sql_query(request: Request, body: SQLRequestBody) -> JSONResponse:
     user_query = body.query
-    
     try:
-        # Invoke the SQL query chain
-        response = chain.invoke({"question": user_query})
-        
-        async def generate():
-            yield str(response)
-        
-        # Return the response as a StreamingResponse with async generator
-        return StreamingResponse(content=generate(), media_type="text/plain", status_code=200)
+        # Use the SQL agent executor to process the query
+        response = db_chain.run(user_query)
     except Exception as e:
-        return StreamingResponse(content=str(e), media_type="text/plain", status_code=500)
+        response = f"An error occurred: {str(e)}"
 
+    return JSONResponse(content=response, media_type="text/plain")
 
-
+app.include_router(sql_router)
